@@ -2,7 +2,7 @@
 
 ### Conectando Generaciones a través de la Tecnología
 
-![Elepad Banner](assets/banner.png)
+![Elepad Banner](image.png)
 
 ## 🎯 Nuestra Misión
 
@@ -14,7 +14,6 @@ Elepad es una aplicación móvil innovadora diseñada para fortalecer los lazos 
 - 📍 **Ubicación en Tiempo Real**: Seguimiento de ubicación para mayor seguridad
 - 💊 **Control de Medicamentos**: Gestión y seguimiento de medicación diaria
 - 🗣️ **Comunicación Simplificada**: Chat y videollamadas adaptados para adultos mayores
-- ❤️ **Monitoreo de Salud**: Seguimiento de signos vitales básicos
 - 🆘 **Botón de Emergencia**: Asistencia inmediata con un solo toque
 
 ## 🚀 Comenzando
