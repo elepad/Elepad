@@ -2,7 +2,7 @@
 
 ### Conectando Generaciones a través de la Tecnología
 
-![Elepad Banner](image.png)
+<img src="image.png" alt="Elepad Banner" width="400" height="auto">
 
 ## 🎯 Nuestra Misión
 
