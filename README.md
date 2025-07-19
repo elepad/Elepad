@@ -42,10 +42,10 @@ Elepad es una aplicación móvil innovadora diseñada para fortalecer los lazos 
 
 ¿Tienes preguntas o sugerencias? ¡Nos encantaría escucharte!
 
-- 📧 Email: contacto@elepad.com
+- 📧 Email: proyectoelepad@gmail.com
 - 🌐 Sitio web: www.elepad.com
 - 📱 Soporte en App: Desde la sección de Ayuda
 
 ## � Licencia
 
-Elepad © 2025. Todos los derechos reservados.<!--
+Elepad © 2025. Todos los derechos reservados.
