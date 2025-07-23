@@ -3,7 +3,7 @@
 ### Conectando Generaciones a través de la Tecnología
 
 <div align="center">
-  <img src="ele-happy.png" alt="Elepad Banner" width="400" height="auto">
+  <img src="neo.png" alt="Elepad Banner" width="400" height="auto">
 </div>
 
 ## 🎯 Nuestra Misión
