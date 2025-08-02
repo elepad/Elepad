@@ -1,7 +1,7 @@
 name: Historia de Usuario
 description: Definí una historia de usuario para Elepad
-title: "[HISTORIA] "
-labels: []
+title: "Historia de Usuario"
+labels: ["historia"]
 assignees: []
 
 body:
