@@ -22,8 +22,6 @@ body:
         - [ ] Criterio 1
         - [ ] Criterio 2
         - [ ] Criterio 3
-    validations:
-      required: true
 
   - type: markdown
     attributes:
@@ -34,5 +32,3 @@ body:
     attributes:
       label: Información adicional
       placeholder: Agregá contexto útil, decisiones tomadas, etc.
-    validations:
-      required: false
