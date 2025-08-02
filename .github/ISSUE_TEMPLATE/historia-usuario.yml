@@ -6,7 +6,7 @@ assignees: []
 
 body:
   - type: textarea
-    id: criterios
+    id: descripcion
     attributes:
       label: 🎯 Historia de Usuario
       description: Describí la historia de usuario
