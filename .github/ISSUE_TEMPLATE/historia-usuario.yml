@@ -1,0 +1,38 @@
+name: Historia de Usuario
+description: Definí una historia de usuario para Elepad
+title: "[HISTORIA] "
+labels: []
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: "## 🎯 Historia de Usuario\n\nComo [rol] quiero [acción] para [beneficio]"
+
+  - type: markdown
+    attributes:
+      value: "## ✅ Criterios de Aceptación"
+
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Criterios de aceptación
+      description: Escribí cada criterio como un checkbox con `- [ ]`
+      placeholder: |
+        - [ ] Criterio 1
+        - [ ] Criterio 2
+        - [ ] Criterio 3
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: "## 💭 Información Adicional"
+
+  - type: textarea
+    id: info
+    attributes:
+      label: Información adicional
+      placeholder: Agregá contexto útil, decisiones tomadas, etc.
+    validations:
+      required: false
