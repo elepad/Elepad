@@ -1,0 +1,12 @@
+# dependencies
+node_modules/
+
+# Expo and Metro
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+.metro-health-check*
+
+# local env files
+.env*.local

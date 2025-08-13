@@ -1,0 +1,16 @@
+# dependencies and outputs
+node_modules
+
+# local configs and caches
+.vscode
+.turbo
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# macOS
+.DS_Store
+*.pem
