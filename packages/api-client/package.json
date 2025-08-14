@@ -1,0 +1,13 @@
+{
+  "name": "@elepad/api-client",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/index.ts",
+  "dependencies": {
+    "hono": "^4.6.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3",
+    "@elepad/api": "file:../../apps/api"
+  }
+}

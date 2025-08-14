@@ -1,5 +1,6 @@
 # dependencies and outputs
 node_modules
+dist
 
 # local configs and caches
 .vscode

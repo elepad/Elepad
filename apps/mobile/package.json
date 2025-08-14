@@ -9,10 +9,13 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint",
-    "eject": "expo eject"
+    "lint": "eslint .",
+    "eject": "expo eject",
+    "format": "prettier --write .",
+    "clean": "rm -rf .expo"
   },
   "dependencies": {
+    "@elepad/api-client": "*",
     "@expo/vector-icons": "^14.1.0",
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
@@ -44,7 +47,7 @@
     "@babel/core": "^7.25.2",
     "@types/react": "~19.0.10",
     "typescript": "~5.8.3",
-    "eslint": "^9.25.0",
-    "eslint-config-expo": "~9.2.0"
-  }
+    "eslint": "^9.25.0"
+  },
+  "packageManager": "npm@11.5.2"
 }

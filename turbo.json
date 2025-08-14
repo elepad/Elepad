@@ -4,8 +4,7 @@
   "tasks": {
     "start": {
       "cache": false,
-      "persistent": true,
-      "dependsOn": ["^dev"]
+      "persistent": true
     },
     "build": {
       "inputs": ["$TURBO_DEFAULT$", ".env*"],

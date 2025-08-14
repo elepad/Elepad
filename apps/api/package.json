@@ -2,14 +2,19 @@
   "name": "@elepad/api",
   "version": "1.0.0",
   "private": true,
+  "main": "src/app.ts",
+  "types": "src/app.ts",
   "type": "module",
   "engines": {
-    "node": ">=18.18"
+    "node": ">=20"
   },
   "scripts": {
     "start": "tsx watch src/app.ts",
     "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "clean": "rm -rf dist"
   },
   "dependencies": {
     "@hono/node-server": "^1.13.7",
@@ -21,6 +26,7 @@
   },
   "devDependencies": {
     "tsx": "^4.19.1",
-    "typescript": "^5.5.4"
-  }
+    "typescript": "~5.8.3"
+  },
+  "packageManager": "npm@11.5.2"
 }
