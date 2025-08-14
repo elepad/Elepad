@@ -1,0 +1,39 @@
+{
+  "name": "Elepad Monorepo",
+  "dockerComposeFile": "compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/elepad",
+  "remoteUser": "node",
+  "mounts": [
+    "source=devcontainer-cache-npm,target=/home/node/.npm,type=volume"
+  ],
+  "postCreateCommand": "npm install",
+
+  "forwardPorts": [3000, 5173, 8787, 8081, 19000, 19001, 19002, 5432],
+  "portsAttributes": {
+    "3000": { "label": "Web App (Next/Vite)" },
+    "5173": { "label": "Vite Dev Server" },
+    "8787": { "label": "API (Hono)" },
+    "8081": { "label": "Metro Bundler" },
+    "19000": { "label": "Expo DevTools (UI)" },
+    "19001": { "label": "Expo Debug (LAN)" },
+    "19002": { "label": "Expo DevTools (WS)" },
+    "5432": { "label": "PostgreSQL" }
+  },
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "eslint.workingDirectories": [{ "mode": "auto" }]
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "GraphQL.vscode-graphql",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode.vscode-typescript-next"
+      ]
+    }
+  }
+}
