@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "expo start",
-    "reset-project": "node ./scripts/reset-project.js",
+    "dev": "expo start",
+    "start": "expo start --no-dev --minify",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -20,6 +20,7 @@
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/elements": "^2.3.8",
     "@react-navigation/native": "^7.1.6",
+    "@tanstack/react-query": "^5.85.3",
     "expo": "~53.0.20",
     "expo-blur": "~14.1.5",
     "expo-constants": "~17.1.7",

@@ -1,8 +1,12 @@
 import { OpenAPIHono, z } from "@hono/zod-openapi";
 
-export const healthApp = new OpenAPIHono();
+const HealthSchema = z.object({
+  ok: z.boolean(),
+  uptime: z.number(),
+  ts: z.string(),
+});
 
-healthApp.openapi(
+export const healthApp = new OpenAPIHono().openapi(
   {
     method: "get",
     path: "/health",
@@ -11,11 +15,7 @@ healthApp.openapi(
         description: "Health check",
         content: {
           "application/json": {
-            schema: z.object({
-              ok: z.boolean(),
-              uptime: z.number(),
-              ts: z.string(),
-            }),
+            schema: HealthSchema,
           },
         },
       },
@@ -23,9 +23,12 @@ healthApp.openapi(
     tags: ["Health"],
   },
   (c) =>
-    c.json({
-      ok: true,
-      uptime: process.uptime(),
-      ts: new Date().toISOString(),
-    }),
+    c.json(
+      {
+        ok: true,
+        uptime: process.uptime(),
+        ts: new Date().toISOString(),
+      },
+      200,
+    ),
 );

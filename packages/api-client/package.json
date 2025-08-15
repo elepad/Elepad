@@ -1,13 +1,20 @@
 {
   "name": "@elepad/api-client",
   "version": "0.0.1",
+  "type": "module",
+  "main": "src/gen/client.ts",
+  "types": "src/gen/client.ts",
   "private": true,
-  "main": "./src/index.ts",
-  "dependencies": {
-    "hono": "^4.6.0"
+  "scripts": {
+    "build": "orval",
+    "dev": "orval --watch"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.85.3",
+    "react": "19.0.0"
   },
   "devDependencies": {
-    "typescript": "~5.8.3",
-    "@elepad/api": "file:../../apps/api"
-  }
+    "orval": "^7.11.2"
+  },
+  "packageManager": "npm@11.5.2"
 }

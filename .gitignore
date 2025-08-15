@@ -1,10 +1,12 @@
 # dependencies and outputs
-node_modules
-dist
+node_modules/
+dist/
 
 # local configs and caches
-.vscode
-.turbo
+.vscode/
+.turbo/
+gen/
+openapi.json
 
 # env files
 .env
@@ -16,3 +18,9 @@ dist
 # macOS
 .DS_Store
 *.pem
+
+# Expo and Metro
+.expo/
+web-build/
+expo-env.d.ts
+.metro-health-check*

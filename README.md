@@ -1,22 +1,24 @@
 # 🐘 Elepad
 
+# 🐘 Elepad
+
 <p align="center">
-  <p align="center"><b>¡Conectá con tus seres queridos mediante amor y tecnología!</b></p>
-  <img src="packages/assets/ele-excited.png" alt="Ele, el elefante de Elepad" />
+  <b>¡Conectá con tus seres queridos mediante amor y tecnología!</b>
+</p>
+
+<p align="center">
+  <img src="packages/assets/ele-excited.png" alt="Ele, el elefante de Elepad" width="200" />
 </p>
 
 Elepad es una aplicación móvil diseñada para fortalecer la conexión entre adultos mayores y sus familias a través de una plataforma intuitiva y fácil de usar.
 
-1. 📱 Descargá Elepad desde Google Play.
+1. 📱 Descargá Elepad desde la Play Store.
 2. 👨‍👩‍👧‍👦 Creá un grupo familiar.
 3. 📆 Registrá actividades en tu calendario semanal.
 4. 🧩 Resolvé desafíos para ejercitar la mente.
 5. 🎯 ¡Conectá con tus seres queridos mediante amor y tecnología!
 
-Elepad ofrece una interfaz intuitiva diseñada para todas las edades. Está disponible en:
-
-- iOS 12.0 o superior
-- Android 8.0 o superior
+Elepad ofrece una interfaz intuitiva diseñada para todas las edades. Por ahora solo estará disponible en Android.
 
 ¿Tenés preguntas o sugerencias? ¡Nos encantaría escucharte!
 
@@ -27,11 +29,16 @@ Elepad ofrece una interfaz intuitiva diseñada para todas las edades. Está disp
 
 La planificación del proyecto se puede ver en varias partes:
 
-- [Especificación de Requisitos de Software](https://docs.google.com/document/d/1R3vB02NTxqxi9H_KYEBNzvEl6xEbmV-Q1nAyWVGubfI).
-- [Planificación](https://docs.google.com/document/d/1NqHx6Go_-peDly_qNYltLgTfeM6FCRMo5ZNa35w0yvI).
-- [Backlog](https://github.com/users/elepad/projects/1/views/3).
-- [Tablero de la release actual](https://github.com/users/elepad/projects/1/views/3).
-- [Roadmap](https://github.com/users/elepad/projects/1/views/3).
+- [Carpeta de Google Drive](https://drive.google.com/drive/folders/198iZvngiNkAGevNMSZ7UdcGgAXYiP7KN).
+  - [Especificación de Requisitos de Software](https://docs.google.com/document/d/1R3vB02NTxqxi9H_KYEBNzvEl6xEbmV-Q1nAyWVGubfI).
+  - [Planificación](https://docs.google.com/document/d/1NqHx6Go_-peDly_qNYltLgTfeM6FCRMo5ZNa35w0yvI).
+  - [Diagramas técnicos](https://drive.google.com/file/d/1_6j1oftihcGSm7DQh2r-obAzsL51-S-g/view?usp=sharing) (tiene un DER).
+- [GitHub](https://github.com/elepad/Elepad)
+  - [Backlog](https://github.com/users/elepad/projects/1/views/3).
+  - [Roadmap](https://github.com/users/elepad/projects/1/views/3).
+  - [Tablero de la release actual](https://github.com/users/elepad/projects/1/views/3).
+- [Canva](https://www.canva.com/design/DAGtndSDPec/fhyqoHBOG9PvgYRHk9xqmA/edit?utm_content=DAGtndSDPec&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) (tiene un User Story Map).
+- [Figma](https://www.canva.com/design/DAGtndSDPec/fhyqoHBOG9PvgYRHk9xqmA) (mockups de vistas principales).
 
 Cada historia de usuario planificada se puede ver en el [listado de Issues](https://github.com/elepad/Elepad/issues?q=is%3Aissue) de este repositorio.
 
@@ -41,16 +48,28 @@ Para levantar la app en un entorno de desarrollo:
 
 ```bash
 npm install
-npm run start
+npm run dev
 ```
 
-Por dentro se utiliza Turborepo (con el comando `turbo`) para levantar todos los componentes de la aplicación.
+Se utiliza Turborepo (`turbo`) como sistema de build para levantar con un solo comando todos los componentes de la aplicación.
+
+Para buildear y ejecutar la app:
+
+```bash
+npm install
+npm run build
+npm run start
+```
 
 ## 🧑‍💻 Flujo de Trabajo
 
 Se aplicarán **prácticas de DevOps** en el desarrollo de Elepad para poder trabajar de manera productiva y asincrónica. Dado que los cinco miembros del equipo cursamos múltiples materias juntos, constantemente se comunica el progreso del proyecto.
 
 ### 🔨 Herramientas
+
+Servicios de terceros:
+
+- [Supabase](https://supabase.com/dashboard/project/sdnmoweppzszpxyggdyg).
 
 Herramientas de desarrollo:
 
@@ -64,18 +83,19 @@ Herramientas de desarrollo:
 Estructura de monorepo utilizando Turborepo.
 
 ```yaml
-├── apps
-│   └── mobile      # App móvil con React Native
-│   └── api         # Servidor back end
-│   └── web         # Landing page muy sencilla para publicitar la app
-└── packages
-    └── api-client  # Cliente REST autogenerado para la api
-    └── assets      # Imágenes de Elepad
-    └── types       # Tipos de datos de TS compartidos
-    └── validation  # Zod schemas compartidos
+├── apps          # Aplicaciones
+│   ├── api           # Servidor backend con Hono y OpenAPI
+│   └── mobile        # App móvil con React Native y Expo
+└── packages      # Paquetes comunes a las aplicaciones
+    ├── api-client    # Hooks de Tanstack Query generados con `orval`
+    └── assets        # Imágenes de Elepad
 ```
 
-Pendiente...
+El código de `packages/api-client` es autogenerado utilizando `orval`. Al utilizar el comando `npm run dev`:
+
+1. Cuando `apps/api` detecta un cambio en algún archivo, ejecuta su `scripts/emit-openapi.ts` para generar el archivo `openapi.json`.
+2. Cuando `packages/api-client` detecta un cambio en `openapi.json`, regenera el código del cliente en `src/gen/`.
+3. `apps/mobile` utiliza `packages/api-client` como dependencia.
 
 ### ✅ Convenciones
 
@@ -98,3 +118,5 @@ En lo posible, los **mensajes de commits** tendrán la estructura `<type>: <desc
 - `<description>`: es un breve resumen de los cambios. Se escribe en infinitivo, describiendo lo que el commit va a hacer.
 
 Referencia: [https://www.conventionalcommits.org/](https://www.conventionalcommits.org/).
+
+Si en el código hay deuda técnica o cambios pendientes, se lo puede señalar con un comentario que diga `// TODO: ...`. Ej: `// TODO: optimize this method`.

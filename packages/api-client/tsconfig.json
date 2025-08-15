@@ -1,11 +1,9 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "paths": {
-      "@elepad/api": ["../../apps/api/src/app"]
-    }
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true
   },
   "include": ["src"]
 }

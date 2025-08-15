@@ -1,12 +1,30 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform } from "react-native";
-
+import { Platform, Text, View } from "react-native";
+import { useGetHealth } from "@elepad/api-client";
 import { HapticTab } from "@/components/HapticTab";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+
+// TODO: delete ApiHealthIndicator when the backend has some functionality
+function ApiHealthIndicator() {
+  const colorScheme = useColorScheme();
+  const { isSuccess, isPending, isError } = useGetHealth();
+  const label = isPending ? "⏳" : isSuccess ? "🟢" : "🔴";
+  return (
+    <Text
+      style={{
+        fontSize: 16,
+        marginRight: 8,
+        color: Colors[colorScheme ?? "light"].text,
+      }}
+    >
+      API: {label}
+    </Text>
+  );
+}
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -15,7 +33,8 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: false,
+        headerShown: true,
+        headerRight: () => <ApiHealthIndicator />,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({

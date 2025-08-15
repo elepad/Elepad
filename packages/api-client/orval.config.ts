@@ -1,0 +1,18 @@
+import { defineConfig } from "orval";
+
+export default defineConfig({
+  elepad: {
+    input: "../../apps/api/openapi.json",
+    output: {
+      target: "src/gen/client.ts",
+      client: "react-query",
+      httpClient: "fetch",
+      override: {
+        mutator: {
+          path: "src/mutator.ts",
+          name: "rnFetch",
+        },
+      },
+    },
+  },
+});
