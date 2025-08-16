@@ -9,7 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "dev": "expo start",
-    "lint": "eslint . && tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx && tsc --noEmit",
     "eject": "expo eject",
     "clean": "rm -rf .expo",
     "format": "prettier --write ."
@@ -38,6 +38,7 @@
     "react-dom": "19.0.0",
     "react-native": "0.79.5",
     "react-native-gesture-handler": "~2.24.0",
+    "react-native-paper": "^5.14.5",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
@@ -47,8 +48,8 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~19.0.10",
-    "typescript": "~5.8.3",
-    "eslint": "^9.25.0"
+    "eslint": "^9.25.0",
+    "typescript": "~5.8.3"
   },
   "packageManager": "npm@11.5.2"
 }

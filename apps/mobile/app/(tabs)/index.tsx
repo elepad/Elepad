@@ -1,18 +1,14 @@
 import LogIn from "@/components/Forms/Auth/LogIn";
 import NewAccount from "@/components/Forms/Auth/NewAccount";
 import React, { useState, useRef } from "react";
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  Pressable,
-  Animated,
-} from "react-native";
+import { ImageBackground, StyleSheet, View, Animated } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import { Button, Text, useTheme } from "react-native-paper";
+import elephantsImg from "@/assets/images/elefantes_juntos.png";
+import logoImg from "@/assets/images/logoblanco.png";
 
-export default function Home() {
+export default function HomeScreen() {
+  const theme = useTheme();
   const [view, setView] = useState<"buttons" | "login" | "newaccount">(
     "buttons",
   );
@@ -37,16 +33,18 @@ export default function Home() {
     <SafeAreaProvider>
       <SafeAreaView style={styles.container} edges={["left", "right"]}>
         <ImageBackground
-          source={require("@/assets/images/elefantes_juntos.png")}
+          source={elephantsImg}
           resizeMode="cover"
           style={{ flex: 1 }}
         >
           <ImageBackground
-            source={require("@/assets/images/logoblanco.png")}
+            source={logoImg}
             resizeMode="contain"
             style={styles.logoContainer}
           >
-            <Text style={styles.title}>ELEPAD</Text>
+            <Text variant="headlineLarge" style={styles.title}>
+              ELEPAD
+            </Text>
           </ImageBackground>
 
           <Animated.View style={{ flex: 1, opacity: fadeAnim }}>
@@ -55,22 +53,43 @@ export default function Home() {
                 <View
                   style={{ flexDirection: "row", justifyContent: "center" }}
                 >
-                  <Pressable
+                  <Button
+                    mode="contained"
+                    icon="login"
                     onPress={() => goToView("login")}
-                    style={styles.sesion}
+                    style={styles.sessionButton}
+                    contentStyle={{ height: 60 }}
+                    labelStyle={{ fontSize: 20, fontWeight: "bold" }}
+                    accessibilityLabel="Iniciar sesión"
                   >
-                    <Text style={styles.buttonSesion}>Iniciar Sesión</Text>
-                  </Pressable>
+                    Iniciar Sesión
+                  </Button>
                 </View>
+
                 <View
                   style={{ flexDirection: "row", justifyContent: "center" }}
                 >
-                  <Text style={styles.buttonNew}>
+                  <Text
+                    variant="titleMedium"
+                    style={[styles.buttonNew, { color: "white" }]}
+                  >
                     Si eres nuevo, haz click{" "}
                   </Text>
-                  <Pressable onPress={() => goToView("newaccount")}>
-                    <Text style={styles.buttonAqui}>aquí</Text>
-                  </Pressable>
+                  <Text
+                    variant="titleMedium"
+                    onPress={() => goToView("newaccount")}
+                    style={[
+                      styles.buttonAqui,
+                      {
+                        color: theme.colors.primary,
+                        textDecorationLine: "underline",
+                      },
+                    ]}
+                    accessibilityRole="button"
+                    accessibilityLabel="Crear cuenta nueva"
+                  >
+                    aquí
+                  </Text>
                 </View>
               </>
             )}
@@ -96,36 +115,23 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "white",
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: "bold",
     textAlign: "center",
+    // original sizes approximated with MD3 variants + style
+    fontWeight: "bold",
   },
-  sesion: {
-    backgroundColor: "#5AB4D3",
+  sessionButton: {
     width: 250,
     borderRadius: 30,
     marginTop: 300,
   },
-  buttonSesion: {
-    color: "white",
-    fontSize: 30,
-    lineHeight: 60,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
   buttonNew: {
-    color: "white",
-    fontSize: 25,
-    lineHeight: 60,
     fontWeight: "bold",
     textAlign: "center",
+    lineHeight: 60,
   },
   buttonAqui: {
-    color: "#00ffffff",
-    fontSize: 25,
-    lineHeight: 60,
     fontWeight: "bold",
     textAlign: "center",
+    lineHeight: 60,
   },
 });

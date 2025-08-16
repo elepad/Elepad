@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 export default function useAuth() {
-  const login = async (params: any) => {
+  const login = async (params: object) => {
     const response = await fetch(`${process.env.EXPO_PUBLIC_API}/auth/login`, {
       method: "POST",
       headers: {
@@ -20,7 +20,7 @@ export default function useAuth() {
     return false;
   };
 
-  const newUser = async (params: any) => {
+  const newUser = async (params: object) => {
     const response = await fetch(
       `${process.env.EXPO_PUBLIC_API}/auth/newAccount`,
       {

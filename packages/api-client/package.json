@@ -11,7 +11,8 @@
   },
   "peerDependencies": {
     "@tanstack/react-query": "^5.85.3",
-    "react": "19.0.0"
+    "react": "19.0.0",
+    "react-native-paper": "^5.14.5"
   },
   "devDependencies": {
     "@elepad/api": "*",

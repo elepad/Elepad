@@ -1,8 +1,11 @@
+import { useState } from "react";
+import { View, StyleSheet } from "react-native";
+import { Text, TextInput, Button, Surface } from "react-native-paper";
 import useAuth from "@/hooks/useAuth";
-import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 
-export default function LogIn({ onBack }: { onBack: () => void }) {
+type Props = { onBack: () => void };
+
+export default function LogIn({ onBack }: Props) {
   const { login } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,55 +15,82 @@ export default function LogIn({ onBack }: { onBack: () => void }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Iniciar Sesión</Text>
+    <Surface style={styles.surface} elevation={2}>
+      <View style={styles.container}>
+        <Text variant="headlineMedium" style={styles.title}>
+          Iniciar Sesión
+        </Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Nombre de usuario"
-        value={username}
-        onChangeText={setUsername}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Clave"
-        value={password}
-        secureTextEntry
-        onChangeText={setPassword}
-      />
+        <TextInput
+          mode="outlined"
+          label="Nombre de usuario"
+          value={username}
+          onChangeText={setUsername}
+          autoCapitalize="none"
+          autoCorrect={false}
+          returnKeyType="next"
+          style={styles.input}
+        />
 
-      <Pressable style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Entrar</Text>
-      </Pressable>
+        <TextInput
+          mode="outlined"
+          label="Clave"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          returnKeyType="go"
+          onSubmitEditing={handleSubmit}
+          style={styles.input}
+        />
 
-      <Pressable style={styles.backButton} onPress={onBack}>
-        <Text style={styles.backText}>Volver</Text>
-      </Pressable>
-    </View>
+        <Button
+          mode="contained"
+          onPress={handleSubmit}
+          style={styles.button}
+          contentStyle={styles.buttonContent}
+        >
+          Entrar
+        </Button>
+
+        <Button
+          mode="text"
+          onPress={onBack}
+          style={styles.backButton}
+          labelStyle={styles.backLabel}
+        >
+          Volver
+        </Button>
+      </View>
+    </Surface>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20, marginTop: 50 },
-  title: { fontSize: 28, fontWeight: "bold", marginBottom: 20, color: "white" },
+  surface: {
+    marginTop: 50,
+    marginHorizontal: 16,
+    borderRadius: 16,
+  },
+  container: {
+    padding: 20,
+  },
+  title: {
+    marginBottom: 20,
+  },
   input: {
-    backgroundColor: "white",
-    borderRadius: 10,
-    padding: 10,
     marginVertical: 8,
   },
   button: {
-    backgroundColor: "#5AB4D3",
-    padding: 15,
-    borderRadius: 20,
-    marginTop: 10,
+    marginTop: 12,
+    borderRadius: 12,
   },
-  buttonText: { color: "white", fontSize: 18, textAlign: "center" },
-  backButton: { marginTop: 20 },
-  backText: {
-    color: "#37bfecff",
-    fontSize: 30,
-    textAlign: "center",
-    fontWeight: "bold",
+  buttonContent: {
+    paddingVertical: 8,
+  },
+  backButton: {
+    marginTop: 8,
+  },
+  backLabel: {
+    fontSize: 16,
   },
 });

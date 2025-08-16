@@ -1,8 +1,11 @@
+import { useState } from "react";
+import { View, StyleSheet } from "react-native";
+import { Text, TextInput, Button, Surface, RadioButton } from "react-native-paper";
 import useAuth from "@/hooks/useAuth";
-import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, StyleSheet } from "react-native";
 
-export default function NewAccount({ onBack }: { onBack: () => void }) {
+type Props = { onBack: () => void };
+
+export default function NewAccount({ onBack }: Props) {
   const { newUser } = useAuth();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -21,112 +24,132 @@ export default function NewAccount({ onBack }: { onBack: () => void }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Crear Cuenta</Text>
+    <Surface style={styles.surface} elevation={2}>
+      <View style={styles.container}>
+        <Text variant="headlineMedium" style={styles.title}>
+          Crear Cuenta
+        </Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Nombre de usuario"
-        value={username}
-        onChangeText={setUsername}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Correo electrónico"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Clave"
-        value={password}
-        secureTextEntry
-        onChangeText={setPassword}
-      />
-
-      <View style={styles.familygroup}>
-        <View style={styles.radioContainer}>
-          <Pressable onPress={() => setBelongsGroup("si")}>
-            <Text
-              style={
-                belongsGroup === "si" ? styles.radioSelected : styles.radio
-              }
-            >
-              ●
-            </Text>
-          </Pressable>
-          <Text style={styles.radioLabel}>
-            Sí, pertenezco a un grupo familiar
-          </Text>
-        </View>
-
-        <View style={styles.radioContainer}>
-          <Pressable onPress={() => setBelongsGroup("no")}>
-            <Text
-              style={
-                belongsGroup === "no" ? styles.radioSelected : styles.radio
-              }
-            >
-              ●
-            </Text>
-          </Pressable>
-          <Text style={styles.radioLabel}>No</Text>
-        </View>
-      </View>
-
-      {belongsGroup === "si" && (
         <TextInput
+          mode="outlined"
+          label="Nombre de usuario"
+          value={username}
+          onChangeText={setUsername}
+          autoCapitalize="none"
+          autoCorrect={false}
+          returnKeyType="next"
           style={styles.input}
-          placeholder="Código del grupo"
-          value={groupCode}
-          onChangeText={setGroupCode}
         />
-      )}
 
-      <Pressable style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Crear Cuenta</Text>
-      </Pressable>
+        <TextInput
+          mode="outlined"
+          label="Correo electrónico"
+          value={email}
+          onChangeText={setEmail}
+          autoCapitalize="none"
+          autoCorrect={false}
+          keyboardType="email-address"
+          returnKeyType="next"
+          style={styles.input}
+        />
 
-      <Pressable style={styles.backButton} onPress={onBack}>
-        <Text style={styles.backText}>Volver</Text>
-      </Pressable>
-    </View>
+        <TextInput
+          mode="outlined"
+          label="Clave"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+          returnKeyType="go"
+          onSubmitEditing={handleSubmit}
+          style={styles.input}
+        />
+
+        <Surface style={styles.groupCard} elevation={0}>
+          <Text variant="titleSmall" style={styles.groupTitle}>
+            ¿Pertenecés a un grupo familiar?
+          </Text>
+          <RadioButton.Group
+            onValueChange={(v) => setBelongsGroup(v as "si" | "no")}
+            value={belongsGroup}
+          >
+            <View style={styles.radioRow}>
+              <RadioButton value="si" />
+              <Text style={styles.radioLabel}>Sí, pertenezco a un grupo familiar</Text>
+            </View>
+            <View style={styles.radioRow}>
+              <RadioButton value="no" />
+              <Text style={styles.radioLabel}>No</Text>
+            </View>
+          </RadioButton.Group>
+
+          {belongsGroup === "si" && (
+            <TextInput
+              mode="outlined"
+              label="Código del grupo"
+              value={groupCode}
+              onChangeText={setGroupCode}
+              style={[styles.input, { marginTop: 8 }]}
+            />
+          )}
+        </Surface>
+
+        <Button
+          mode="contained"
+          onPress={handleSubmit}
+          style={styles.button}
+          contentStyle={styles.buttonContent}
+        >
+          Crear Cuenta
+        </Button>
+
+        <Button mode="text" onPress={onBack} style={styles.backButton}>
+          Volver
+        </Button>
+      </View>
+    </Surface>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20, marginTop: 50 },
-  title: { fontSize: 28, fontWeight: "bold", marginBottom: 20, color: "white" },
+  surface: {
+    marginTop: 50,
+    marginHorizontal: 16,
+    borderRadius: 16,
+  },
+  container: {
+    padding: 20,
+  },
+  title: {
+    marginBottom: 20,
+  },
   input: {
-    backgroundColor: "white",
-    borderRadius: 10,
-    padding: 10,
     marginVertical: 8,
   },
-  button: {
-    backgroundColor: "#5AB4D3",
-    padding: 15,
-    borderRadius: 20,
-    marginTop: 10,
+  groupCard: {
+    backgroundColor: "#f5f5f5",
+    borderRadius: 12,
+    padding: 12,
+    marginTop: 8,
   },
-  buttonText: { color: "white", fontSize: 18, textAlign: "center" },
-  backButton: { marginTop: 20 },
-  backText: {
-    color: "#37bfecff",
-    fontSize: 30,
-    textAlign: "center",
-    fontWeight: "bold",
+  groupTitle: {
+    marginBottom: 4,
   },
-  radioContainer: {
+  radioRow: {
     flexDirection: "row",
     alignItems: "center",
-    marginVertical: 5,
+    marginVertical: 4,
   },
-  radio: { fontSize: 20, color: "#aaa", marginRight: 8 },
-  radioSelected: { fontSize: 20, color: "#5AB4D3", marginRight: 8 },
-  radioLabel: { color: "black" },
-  familygroup: {
-    backgroundColor: "#f5f5f5ff",
-    borderRadius: 10,
+  radioLabel: {
+    marginLeft: 4,
+  },
+  button: {
+    marginTop: 12,
+    borderRadius: 12,
+  },
+  buttonContent: {
+    paddingVertical: 8,
+  },
+  backButton: {
+    marginTop: 8,
   },
 });
