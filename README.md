@@ -1,41 +1,122 @@
-# Elepad 👴👵📱
+# 🐘 Elepad
 
-### Conectando Generaciones a través de la Tecnología
+# 🐘 Elepad
 
-<div align="center">
-  <img src="docs/neo.png" alt="Elepad Banner" width="400" height="auto">
-</div>
+<p align="center">
+  <b>¡Conectá con tus seres queridos mediante amor y tecnología!</b>
+</p>
 
-## 🎯 Nuestra Misión
+<p align="center">
+  <img src="packages/assets/ele-excited.png" alt="Ele, el elefante de Elepad" width="200" />
+</p>
 
-Elepad es una aplicación móvil innovadora diseñada para fortalecer los lazos familiares y brindar tranquilidad en el cuidado de adultos mayores. Facilitamos la conexión entre familias y sus seres queridos mayores a través de una plataforma intuitiva y fácil de usar.
+Elepad es una aplicación móvil diseñada para fortalecer la conexión entre adultos mayores y sus familias a través de una plataforma intuitiva y fácil de usar.
 
-## 🚀 Comenzando
+1. 📱 Descargá Elepad desde la Play Store.
+2. 👨‍👩‍👧‍👦 Creá un grupo familiar.
+3. 📆 Registrá actividades en tu calendario semanal.
+4. 🧩 Resolvé desafíos para ejercitar la mente.
+5. 🎯 ¡Conectá con tus seres queridos mediante amor y tecnología!
 
-1. Descargá Elepad desde Google Play
-2. Creá un grupo familiar
-3. Registrá actividades en tu calendario y resolvé desafíos
-4. ¡Comenzá a conectar con tus seres queridos mediante amor y tecnología!
+Elepad ofrece una interfaz intuitiva diseñada para todas las edades. Por ahora solo estará disponible en Android.
 
-## 💡 Por Qué Elepad
+¿Tenés preguntas o sugerencias? ¡Nos encantaría escucharte!
 
-- Interfaz intuitiva diseñada para todas las edades
-- Privacidad y seguridad como prioridad
-- Soporte 24/7
-- Comunidad activa de usuarios
-- Actualizaciones regulares basadas en feedback
+- Email: [proyectoelepad@gmail.com](mailto:proyectoelepad@gmail.com)
+- Sitio web: pendiente...
 
-## 📱 Disponible en
+## 🗺️ Proyecto
 
-- iOS 12.0 o superior
-- Android 8.0 o superior
+La planificación del proyecto se puede ver en varias partes:
 
-## 🤝 Contacto
+- [Carpeta de Google Drive](https://drive.google.com/drive/folders/198iZvngiNkAGevNMSZ7UdcGgAXYiP7KN).
+  - [Especificación de Requisitos de Software](https://docs.google.com/document/d/1R3vB02NTxqxi9H_KYEBNzvEl6xEbmV-Q1nAyWVGubfI).
+  - [Planificación](https://docs.google.com/document/d/1NqHx6Go_-peDly_qNYltLgTfeM6FCRMo5ZNa35w0yvI).
+  - [Diagramas técnicos](https://drive.google.com/file/d/1_6j1oftihcGSm7DQh2r-obAzsL51-S-g/view?usp=sharing) (tiene un DER).
+- [GitHub](https://github.com/elepad/Elepad)
+  - [Backlog](https://github.com/users/elepad/projects/1/views/3).
+  - [Roadmap](https://github.com/users/elepad/projects/1/views/3).
+  - [Tablero de la release actual](https://github.com/users/elepad/projects/1/views/3).
+- [Canva](https://www.canva.com/design/DAGtndSDPec/fhyqoHBOG9PvgYRHk9xqmA/edit?utm_content=DAGtndSDPec&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton) (tiene un User Story Map).
+- [Figma](https://www.canva.com/design/DAGtndSDPec/fhyqoHBOG9PvgYRHk9xqmA) (mockups de vistas principales).
 
-¿Tienes preguntas o sugerencias? ¡Nos encantaría escucharte!
+Cada historia de usuario planificada se puede ver en el [listado de Issues](https://github.com/elepad/Elepad/issues?q=is%3Aissue) de este repositorio.
 
-- 📧 Email: proyectoelepad@gmail.com
-- 🌐 Sitio web: ...
-- 📱 Soporte en App: Desde la sección de Ayuda
+## 🚀 Cómo Levantar la Aplicación
 
-Elepad © 2025. Todos los derechos reservados.
+Para levantar la app en un entorno de desarrollo:
+
+```bash
+npm install
+npm run dev
+```
+
+Se utiliza Turborepo (`turbo`) como sistema de build para levantar con un solo comando todos los componentes de la aplicación.
+
+Para buildear y ejecutar la app:
+
+```bash
+npm install
+npm run build
+npm run start
+```
+
+## 🧑‍💻 Flujo de Trabajo
+
+Se aplicarán **prácticas de DevOps** en el desarrollo de Elepad para poder trabajar de manera productiva y asincrónica. Dado que los cinco miembros del equipo cursamos múltiples materias juntos, constantemente se comunica el progreso del proyecto.
+
+### 🔨 Herramientas
+
+Servicios de terceros:
+
+- [Supabase](https://supabase.com/dashboard/project/sdnmoweppzszpxyggdyg).
+
+Herramientas de desarrollo:
+
+- npm: gestor de paquetes.
+- Turborepo: build system para el monorepo.
+- eslint: linter de JavaScript.
+- Pendiente...
+
+### 📂 Estructura del Repositorio
+
+Estructura de monorepo utilizando Turborepo.
+
+```yaml
+├── apps          # Aplicaciones
+│   ├── api           # Servidor backend con Hono y OpenAPI
+│   └── mobile        # App móvil con React Native y Expo
+└── packages      # Paquetes comunes a las aplicaciones
+    ├── api-client    # Hooks de Tanstack Query generados con `orval`
+    └── assets        # Imágenes de Elepad
+```
+
+El código de `packages/api-client` es autogenerado utilizando `orval`. Al utilizar el comando `npm run dev`:
+
+1. Cuando `apps/api` detecta un cambio en algún archivo, ejecuta su `scripts/emit-openapi.ts` para generar el archivo `openapi.json`.
+2. Cuando `packages/api-client` detecta un cambio en `openapi.json`, regenera el código del cliente en `src/gen/`.
+3. `apps/mobile` utiliza `packages/api-client` como dependencia.
+
+### ✅ Convenciones
+
+Si bien la planificación se debe documentar en español, en lo posible se intentará **desarrollar en inglés** con el objetivo de adoptar convenciones de la industria.
+
+Siempre que sea conveniente se utilizará la siguiente **estructura de ramas**:
+
+- `prod`: la rama con el código fuente a desplegar.
+- `main`: la rama principal de desarrollo.
+- `feature/`: para nuevas funcionalidades y cambios (por ejemplo, `feature/add-login`).
+- `bugfix/`: para correcciones de errores (por ejemplo, `bugfix/fix-header-bug`).
+- `hotfix/`: para correcciones urgentes (por ejemplo, `hotfix/security-patch`).
+- `chore/`: para tareas que no implican cambios en el código, como actualización de dependencias o documentación (por ejemplo, `chore/update-deps`).
+
+Referencia: [https://conventional-branch.github.io/](https://conventional-branch.github.io/).
+
+En lo posible, los **mensajes de commits** tendrán la estructura `<type>: <description>` donde:
+
+- `<type>`: indica el tipo de cambio. Puede ser `fix`, `feat`, `refactor`, `docs`, `test`, `ci`, etc.
+- `<description>`: es un breve resumen de los cambios. Se escribe en infinitivo, describiendo lo que el commit va a hacer.
+
+Referencia: [https://www.conventionalcommits.org/](https://www.conventionalcommits.org/).
+
+Si en el código hay deuda técnica o cambios pendientes, se lo puede señalar con un comentario que diga `// TODO: ...`. Ej: `// TODO: optimize this method`.
