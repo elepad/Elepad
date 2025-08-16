@@ -9,16 +9,12 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "npm run dev:server & npm run watch:schema",
-    "dev:server": "tsx watch src/server.ts",
-    "watch:schema": "chokidar src/**/*.ts --initial -c \"npm run generate:schema\"",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "build": "tsc && tsx scripts/emit-openapi.ts",
-    "generate:schema": "tsx scripts/emit-openapi.ts",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "clean": "rm -rf dist openapi.json"
+    "dev": "tsx watch src/server.ts",
+    "lint": "eslint . && tsc --noEmit",
+    "clean": "rm -rf dist openapi.json",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@hono/node-server": "^1.13.7",
@@ -30,8 +26,7 @@
   },
   "devDependencies": {
     "tsx": "^4.19.1",
-    "typescript": "~5.8.3",
-    "chokidar-cli": "^3.0.0"
+    "typescript": "~5.8.3"
   },
   "packageManager": "npm@11.5.2"
 }

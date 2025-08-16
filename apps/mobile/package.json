@@ -4,15 +4,15 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "expo start",
     "start": "expo start --no-dev --minify",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "eslint .",
+    "dev": "expo start",
+    "lint": "eslint . && tsc --noEmit",
     "eject": "expo eject",
-    "format": "prettier --write .",
-    "clean": "rm -rf .expo"
+    "clean": "rm -rf .expo",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@elepad/api-client": "*",

@@ -7,13 +7,14 @@
   "private": true,
   "scripts": {
     "build": "orval",
-    "dev": "orval --watch"
+    "dev": "NODE_ENV=development orval --watch"
   },
   "peerDependencies": {
     "@tanstack/react-query": "^5.85.3",
     "react": "19.0.0"
   },
   "devDependencies": {
+    "@elepad/api": "*",
     "orval": "^7.11.2"
   },
   "packageManager": "npm@11.5.2"

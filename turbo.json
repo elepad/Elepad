@@ -12,7 +12,13 @@
     },
     "build": {
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**",
+        "src/gen/**",
+        "openapi.json"
+      ],
       "dependsOn": ["^build"]
     },
     "lint": {},

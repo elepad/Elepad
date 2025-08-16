@@ -2,7 +2,10 @@ import { defineConfig } from "orval";
 
 export default defineConfig({
   elepad: {
-    input: "../../apps/api/openapi.json",
+    input:
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:8787/openapi.json"
+        : "../../apps/api/openapi.json",
     output: {
       target: "src/gen/client.ts",
       client: "react-query",
